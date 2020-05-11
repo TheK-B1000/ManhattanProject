@@ -72,7 +72,7 @@ void AProjectManhattanCharacter::SetupPlayerInputComponent(class UInputComponent
 	PlayerInputComponent->BindAction("Jump", IE_Released, this, &ACharacter::StopJumping);
 
 	//PlayerInputComponent->BindAxis("MoveForward", this, &AProjectManhattanCharacter::MoveForward);
-	//PlayerInputComponent->BindAxis("Turn", this, &AProjectManhattanCharacter::MoveRight);
+	PlayerInputComponent->BindAxis("Turn", this, &AProjectManhattanCharacter::MoveRight);
 
 	// We have 2 versions of the rotation bindings to handle different kinds of devices differently
 	// "turn" handles devices that provide an absolute delta, such as a mouse.
@@ -128,5 +128,5 @@ void AProjectManhattanCharacter::MoveRight(float Value)
 		// get right vector 
 		const FVector Direction = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 		// add movement in that direction
-		AddMovementInput(Direction, Value);
+		AddMovementInput(Direction, 10000);
 }
